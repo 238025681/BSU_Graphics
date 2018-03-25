@@ -1,7 +1,16 @@
 "use strict";
-var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
 
+	function getCordinates(){
+		alert("click");
+	}
+
+
+
+
+var c = document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+
+	drawSH();
 
 
 let line = {
@@ -23,7 +32,7 @@ let l1 = {
 };
 
 color = "cyan";
-drawLine(l1, color);
+//drawLine(l1, color);
 
 let l2 = {
     startX: 100,
@@ -32,7 +41,7 @@ let l2 = {
     endY: 100
 };
 color = "orange";
-drawLine(l2, color);
+//drawLine(l2, color);
 
 let m = (l2.endY - l2.startY) / (l2.endX - l2.startX);
 let b = l2.startY - (m * l2.startX);
@@ -279,7 +288,7 @@ function rotationByPoint(line, point, angle) {
 let rectangle = { xMin: 100, xMax: 200, yMin: 100, yMax: 200 }
 
 ctx.rect(rectangle.xMin, rectangle.yMin, 100, 100);
-ctx.stroke();
+//ctx.stroke();
 let temp_line = { startX: 90 , startY: 90, endX: 190, endY: 190 }
 //drawLine(temp_line, "red");
 
@@ -345,8 +354,8 @@ function cohenSutherlandLineClipAndDraw(rectangle, startPoint, endPoint ){
       let x, y;
       let outcodeOut = startPointCode ? startPointCode : endPointCode;
  
- console.log(startPointCode);
- console.log(endPointCode);
+ 
+ //console.log(endPointCode);
 
       if (outcodeOut & TOP) {           // point is above the clip window
          x = startPoint.x + (endPoint.x - startPoint.x) * (rectangle.yMax - startPoint.y) / (endPoint.y - startPoint.y);
@@ -383,11 +392,11 @@ function cohenSutherlandLineClipAndDraw(rectangle, startPoint, endPoint ){
   // their platform (OpenGL/graphics.h etc.)
   
   temp_line = { startX: startPoint.x , startY: startPoint.y , endX: endPoint.x, endY: endPoint.y }
-  console.log (JSON.stringify(temp_line) );
+  //console.log (JSON.stringify(temp_line) );
   
   
   
-  drawLine(temp_line, "red");
+ // drawLine(temp_line, "red");
   
   }
    
@@ -406,43 +415,36 @@ function cohenSutherlandLineClipAndDraw(rectangle, startPoint, endPoint ){
 //================================================//
 
 
-/*
+
 function drawSH() {
 
 
     let s_line = { startX: 50, startY: 100, endX: 100, endY: 100 };
-    let array = [4, 2];
+  
+    let array = [4, 2, 2, 2];
 
     let k1 = 0;
     let l_length = Math.pow(Math.pow(s_line.endX - s_line.startX,2) + Math.pow(s_line.endY - s_line.startY,0.5),0.5);
     
     let k2 = array[1] / l_length;
     let count = Math.round(l_length / array.length);
-        
-    var qSH_1 = {
-        startX: s_line.startX,
-        startY: s_line.startY,
-        endX: Math.round((1 - k2)*s_line.startX + k2*s_line.endX),
-        endY: Math.round((1 - k2) * s_line.startY + k2 * s_line.endY)
-    };
-    console.log(qSH_1);
-    
+        let x0 = s_line.startX;
+        let y0 = s_line.startY;
+        let x1 = Math.round(((1 - k2) * s_line.startX) + (k2 * s_line.endX)); //x0+4
+        let y1 = Math.round(((1 - k2) * s_line.startY) + (k2 * s_line.endY));
 
   
 
-    for (let i = 2 ; i <= count; i++) {
+    for (let i = 2  ; i <= count; i++) {
 
         //	o	Ако k1  > 1, полагаме k1  = 1  /Q1  ?  P2/ и излизаме от цикъла.
         //o	Ако k2  > 1, полагаме k2  = 1  /Q2  ?  P1/ и излизаме от цикъла.
 
-        let color = "#fc0234";
+        let color = "pink";
 
-        let x0 = qSH_1.startX;
-        let y0 = qSH_1.startY;
-        let x1 = qSH_1.endX;
-        let y1 = qSH_1.endY;
         
-        drawLine(qSH_1, color)
+        
+        drawLine({startX: x0, startY: y0, endX: x1, endY: y1}, color)
 
        
        
@@ -450,19 +452,15 @@ function drawSH() {
         k2 = (k1 + array[(2 * i - 1) % array.length]) / l_length;
         
         
-        //console.dir(k2);
+        
 
        
         
-        x0 = Math.round(x0 + (k1 * x0));// x1+2
+        x0 += Math.round(((k1) * s_line.endX));
         y0 = Math.round(((1 - k1) * s_line.startY) + (k1 * s_line.endY));
-        x1 = Math.round(x1 + (k2 * x1)); //x0+4
+        x1 += Math.round( (k2 * s_line.endX)); 
         y1 = Math.round(((1 - k2) * s_line.startY) + (k2 * s_line.endY));
-        qSH_1 = {
-            startX: x0,
-            startY: y0,
-            endX: x1,
-            endY: y1 }
+        
 
        
         console.log("X0 Start01 - " + x0);
@@ -487,7 +485,7 @@ function drawSH() {
 }
 
 
-*/
+
 
 
 
