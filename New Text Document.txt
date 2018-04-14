@@ -1,0 +1,200 @@
+RGB to HSV 
+===============================
+
+
+
+var r=128;
+var g=232;
+var b=17;
+var rgb=255;
+
+var rP=r/rgb;
+var gP=g/rgb;
+var bP=b/rgb;
+
+var min=0;
+var max=0;
+var maxColor=0;
+var hue=0;
+var saturation=0;
+var valueCalculation=0;
+
+
+if(rP>=gP && rP>=bP){
+	max=rP;
+}else if(gP>=rP && gP>=bP){
+	max=gP;
+	maxColor=1;
+}else{
+	max=bP;
+	maxColor=2;
+}
+
+if(rP<=gP && rP<=bP){
+	min=rP;
+}else if(gP<=rP && gP<=bP){
+	min=gP;
+}else{
+	min=bP;
+}
+
+delta=max-min
+valueCalculation=max;
+
+
+if(delta == 0){
+	hue = 0;
+	
+}else if(maxColor==0){
+	
+	hue = 60*((gP-bP/delta)%6);
+	
+}else if(maxColor==1){
+
+	hue = 60*((bP-rP/delta)+2);
+	
+}else if(maxColor==2){
+
+	hue = 60*((rP-gP/delta)+4);
+	
+}
+
+if(max != 0){
+	
+	saturation = delta / max;
+}
+
+
+
+
+
+alert(" Red MAX - " + rP + "\n Green MAX - " + gP + "\n Blue MAX - " + bP
++ "\n MAX - " + max + "\n MIN - " + min + "\n HUE - " + hue + "\n Delta - " + delta
++ "\n Saturation - " + saturation);
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+RGB TO CYMC
+
+var red = 100;
+var green = 150;
+var blue = 200;
+var rgb = 255;
+
+var redPrime = red/rgb;
+var greenPrime = green/rgb;
+var bluePrime = blue/rgb;
+
+var min = 0;
+var max = 0;
+
+
+
+var blackKey = 0;
+var cyanColor = 0;
+var magentaColor =  0;
+var yellowColor = 0;
+
+
+if(redPrime >= greenPrime && redPrime >= bluePrime){
+	max = redPrime;
+}else if(greenPrime >= redPrime && greenPrime >= bluePrime){
+	max = greenPrime;
+	
+}else{
+	max = bluePrime;
+	
+}
+
+if(redPrime <= greenPrime && redPrime <= bluePrime){
+	
+	min = redPrime;
+	
+}else if( greenPrime <= redPrime && greenPrime <= bluePrime){
+	
+	min = greenPrime;
+	
+}else{
+	
+	min = bluePrime;
+}
+
+
+blackKey = 1 - max;
+cyanColor = (1 - redPrime - blackKey) / (1 - blackKey);
+magentaColor = (1 - greenPrime - blackKey) / (1 - blackKey);
+yellowColor = (1 - bluePrime - blackKey) / (1 - blackKey);
+
+
+
+
+
+
+
+
+alert("Red MAX - " + redPrime + "\nGreen MAX - " + greenPrime + "\nBlue MAX - " + bluePrime
++ "\nMAX - " + max + "\nMIN - " + min + "\nBlack Key - " + blackKey + "\nCyan Color - " + cyanColor
++ "\nMagenta Color - " + magentaColor + "\nYellow Color - " + yellowColor 
++ "\nRED - " + red + "\nGreen - " + green + "\nBLUE - " + blue);
+
+
+===============================================
+
+vectori
+
+Grafika
+
+var stroke_color = "ff0000";
+var sprite = new createjs.Shape();
+
+sprite.graphics.beginStroke(stroke_color)
+
+	.moveTo(100,100)
+		.lineTo(150,150).lineTo(100,300).lineTo(100,100)
+	.moveTo(150,150)
+		.lineTo(200,100).lineTo(200,300).lineTo(150,150);
+	
+stage.addChild(sprite);
+
+
+=================================================================
+
+3D vektor
+
+
+var stroke_color = "ff0000";
+var sprite = new createjs.Shape();
+var xCordinate = 150;
+var yCordinate = 150;
+
+sprite.graphics.beginStroke(stroke_color)
+
+	.moveTo(150,150)
+		.lineTo(300,150).lineTo(300,300).lineTo(150,300).lineTo(150,150);
+		
+		for(var i = 0; i < 150; i+=5){
+			
+		sprite.graphics.beginStroke(stroke_color)
+			.moveTo(xCordinate + i ,yCordinate ).lineTo(xCordinate*2, yCordinate + i)
+			.moveTo(xCordinate ,yCordinate + i ).lineTo(xCordinate + i, yCordinate*2)
+			.moveTo(xCordinate + i ,yCordinate*2 ).lineTo(xCordinate*2, yCordinate*2 - i)
+			.moveTo(xCordinate*2 - i ,yCordinate ).lineTo(xCordinate, yCordinate + i);
+		}
+	
+stage.addChild(sprite);
+
+===================================================================================================================
+
+Piksel
+
+
+var stroke_color = "ff0000";
+
+		
+var piksel =  new createjs.Shape();
+		
+		piksel.graphics.beginFill(stroke_color);
+		piksel.graphics.drawRect(100, 100, 5, 5);
+		
+		stage.addChild(piksel);
+
+		
